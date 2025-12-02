@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allystair Aaron anak Pita - Software Engineer Portfolio</title>
+    <!-- Accessibility: Descriptive Title -->
+    
+    <style>
+        /* -------------------------------------------------------------------------- */
+        /* 1. Global & Variables */
+        /* -------------------------------------------------------------------------- */
+        :root {
+            /* Default Light Mode Colors */
+            --color-primary: #4A90E2; /* Blue */
+            --color-secondary: #50E3C2; /* Teal */
+            --color-text: #333333; /* Dark Grey (High Contrast) */
+            --color-background: #FFFFFF; /* White */
+            --color-card-bg: #F9F9F9; /* Light Grey Card */
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --font-family: 'Helvetica Neue', Arial, sans-serif;
+            scroll-behavior: smooth; /* JS Feature 1: Smooth Scroll Fallback */
+        }
+
+        /* Dark Mode Colors (JS will add 'dark-mode' class to body) */
+        body.dark-mode {
+            --color-primary: #79D1C3; /* Lighter Teal */
+            --color-secondary: #4A90E2; /* Blue */
+            --color-text: #EAEAEA; /* Light Grey */
+            --color-background: #121212; /* Dark Background */
+            --color-card-bg: #1F1F1F; /* Darker Card */
+            --color-shadow: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* High contrast for all text elements */
+        h1, h2, h3, p, a {
+            color: var(--color-text);
+        }
+
+        section {
+            padding: 80px 5%;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Accessibility: Clear focus state for interactive elements */
+        a:focus, button:focus, .nav-toggle:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 2. Navigation & Header */
+        /* -------------------------------------------------------------------------- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--color-card-bg);
+            box-shadow: 0 2px 10px var(--color-shadow);
+            padding: 15px 5%;
+            transition: background-color 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--color-primary) !important;
+            transition: color 0.2s;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            padding: 10px 15px;
+            display: block;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--color-primary);
+        }
+        
+        /* Underline effect for active/hover */
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--color-primary);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links li a:hover::after, .nav-links li a.active::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .nav-toggle, .mode-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            font-size: 1.5rem;
+            color: var(--color-text);
+            transition: color 0.2s;
+        }
+
+        .nav-toggle {
+            display: none; /* Hidden on desktop */
+        }
+        
+        .mode-toggle:hover {
+            color: var(--color-primary);
+        }
+
+
+        /* -------------------------------------------------------------------------- */
+        /* 3. Home Section */
+        /* -------------------------------------------------------------------------- */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 100px;
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-card-bg) 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--color-text);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-primary);
+            color: var(--color-background) !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px var(--color-shadow);
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 4. Projects Section */
+        /* -------------------------------------------------------------------------- */
+        #projects {
+            background-color: var(--color-card-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--color-background);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px var(--color-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.05); /* subtle border */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--color-shadow);
+        }
+
+        .project-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            margin-bottom: 15px;
+        }
+
+        .project-card a {
+            color: var(--color-secondary) !important;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .project-card a:hover {
+            text-decoration: underline;
+        }
+
+        .project-screenshot {
+            width: 100%;
+            height: 200px;
+            background-color: #E0E0E0; /* Placeholder BG */
+            margin-bottom: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #666;
+            overflow: hidden;
+        }
+
+        .project-screenshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 5. About Me Section */
+        /* -------------------------------------------------------------------------- */
+        #about-me {
+            background-color: var(--color-background);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .profile-pic {
+            flex-shrink: 0;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--color-shadow);
+            border: 5px solid var(--color-primary);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bio-text {
+            flex-grow: 1;
+        }
+
+        .skills-grid {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--color-secondary);
+            color: var(--color-background) !important;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        /* -------------------------------------------------------------------------- */
+        /* 6. Contact Section */
+        /* -------------------------------------------------------------------------- */
+        #contact {
+            background-color: var(--color-card-bg);
+            text-align: center;
+        }
+
+        .contact-info a {
+            font-size: 1.5rem;
+            color: var(--color-primary) !important;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+        
+        /* Added spacing between contact links on small screens */
+        .contact-info a:not(:last-child) {
+            margin-bottom: 10px; 
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background-color: var(--color-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--color-shadow);
+            text-align: left;
+        }
+
+        .contact-form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .contact-form-container input[type="text"],
+        .contact-form-container input[type="email"],
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: var(--color-card-bg);
+            color: var(--color-text);
+        }
+        
+        .contact-form-container textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        /* -------------------------------------------------------------------------- */
+        /* 7. Footer */
+        /* -------------------------------------------------------------------------- */
+        footer {
+            text-align: center;
+            padding: 20px 5%;
+            background-color: var(--color-primary);
+            color: white !important;
+        }
+        
+        footer p {
+            color: white !important;
+            font-size: 0.9rem;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 8. Responsive Design (Mobile First) */
+        /* -------------------------------------------------------------------------- */
+        @media screen and (max-width: 768px) {
+            
+            /* Typography Adjustments */
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 60px 5%; /* Reduced vertical padding on mobile */
+            }
+
+            /* Navigation Mobile Overrides */
+            .nav-links {
+                display: none; /* Hide desktop links */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Below the header */
+                left: 0;
+                width: 100%;
+                background-color: var(--color-card-bg);
+                box-shadow: 0 10px 10px var(--color-shadow);
+                padding: 20px 0;
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-100%); /* Initial hidden state */
+            }
+
+            .nav-links.open {
+                display: flex; /* JS Feature 2: Show mobile menu */
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .nav-links li a {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+            
+            .nav-toggle {
+                display: block; /* Show hamburger icon */
+            }
+            
+            /* About Me Layout Adjustments */
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .profile-pic {
+                margin-bottom: 20px;
+            }
+            
+            /* Hide the project screenshot box on very small screens if it takes up too much space */
+            .project-screenshot {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <!-- Persistent Navigation Bar -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">Allystair Aaron anak Pita</a>
+            
+            <!-- JS Feature 3: Dark/Light Mode Toggle -->
+            <button class="mode-toggle" id="mode-toggle" aria-label="Toggle dark and light mode">
+                <!-- Icon: Sun/Moon placeholder -->
+                <span id="mode-icon">🌙</span>
+            </button>
+            
+            <!-- JS Feature 2: Mobile Menu Toggle -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+                &#9776; <!-- Hamburger Icon -->
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ----------------------- HOME SECTION ----------------------- -->
+        <section id="home">
+            <div class="hero-content">
+                <p>Hello, I'm</p>
+                <h1>Allystair Aaron anak Pita</h1>
+                <p>A passionate Software Engineer specializing in elegant, performant, and accessible web solutions.</p>
+                <a href="#projects" class="cta-button">View My Work</a>
+            </div>
+        </section>
+
+        <!-- ----------------------- ABOUT ME SECTION ----------------------- -->
+        <section id="about-me">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="profile-pic">
+                        <!-- UPDATED: Trying a simpler path format using just the original filename -->
+                        <img 
+                            src="uploaded:WhatsApp Image 2025-11-28 at 21.25.03.jpeg" 
+                            alt="Professional portrait of Allystair Aaron anak Pita"
+                            onerror="this.onerror=null; this.src='https://placehold.co/250x250/CC3333/FFFFFF?text=IMAGE+ERROR';"
+                        >
+                    </div>
+                    <div class="bio-text">
+                        <h3>My Journey & Education</h3>
+                        <p>As a student pursuing a Bachelor of Computer Science in Multimedia Computing at UNIMAS (expected 2027), I am driven by the intersection of technology and creativity. My academic background includes a Diploma in Computer Science from UiTM, providing me with a strong foundation in core programming concepts (C, Java) and database management.</p>
+                        <p>I am passionate about building intuitive user experiences (UI/UX) and bringing concepts to life using tools like Figma, Android Studio, and Unity. I thrive in collaborative environments and am actively seeking an internship to apply my theoretical knowledge to real-world software challenges.</p>
+                        
+                        <h3>Core Skills</h3>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Multimedia Computing</span>
+                            <span class="skill-tag">UI/UX Design (Figma)</span>
+                            <span class="skill-tag">C / Java</span>
+                            <span class="skill-tag">Android Studio</span>
+                            <span class="skill-tag">Unity Game Engine</span>
+                            <span class="skill-tag">Database Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ----------------------- PROJECTS SECTION ----------------------- -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    
+                    <!-- Project 1: Mobile App Design -->
+                    <div class="project-card">
+                        <div class="project-screenshot">Mobile App Mockup Placeholder</div>
+                        <h3>ART Sarawak Mobile App Mockup</h3>
+                        <p>Conceptualized and designed a complete mobile application interface (UI/UX) for the future ART Sarawak project using Figma. Focused on intuitive navigation and multimedia content display.</p>
+                        <a href="#">View Figma Prototype &rarr;</a>
+                    </div>
+
+                    <!-- Project 2: Database System -->
+                    <div class="project-card">
+                        <div class="project-screenshot">Database Schema Placeholder</div>
+                        <h3>Car Rentals Database System</h3>
+                        <p>Designed and implemented a relational database system for managing car rentals, including tables for vehicles, customers, bookings, and payments. Optimized for data integrity and query speed.</p>
+                        <a href="#">View Documentation &rarr;</a>
+                    </div>
+
+                    <!-- Project 3: C++ System -->
+                    <div class="project-card">
+                        <div class="project-screenshot">C++ Console Output Placeholder</div>
+                        <h3>C++ Pet Management System</h3>
+                        <p>Developed a console-based pet management system using C++. Features include data structures for record keeping, file I/O for persistence, and object-oriented programming principles.</p>
+                        <a href="#">View Source Code &rarr;</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ----------------------- CONTACT SECTION ----------------------- -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>I am currently open to new opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
+                
+                <div class="contact-info">
+                    <!-- Contact requirement: Mobile Number Link -->
+                    <a href="tel:+60199085970">Mobile No: +60199085970</a>
+                    <!-- Contact requirement: Email link -->
+                    <a href="mailto:allystairaaron@gmail.com">allystairaaron@gmail.com</a>
+                </div>
+
+                <!-- Contact requirement: Basic contact form (front-end only) -->
+                <div class="contact-form-container">
+                    <h3>Send a Message</h3>
+                    <form id="contact-form">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required placeholder="What's on your mind?"></textarea>
+
+                        <button type="submit" class="cta-button submit-button">Send Message</button>
+                        <p id="form-message" style="margin-top: 15px; text-align: center; font-style: italic;"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ----------------------- FOOTER ----------------------- -->
+    <footer>
+        <p>&copy; 2025 Allystair Aaron anak Pita | Built with Pure HTML, CSS, & JavaScript.</p>
+    </footer>
+
+    <!-- -------------------------------------------------------------------------- -->
+    <!-- 9. JavaScript Features (Vanilla JS only) -->
+    <!-- -------------------------------------------------------------------------- -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const modeToggle = document.getElementById('mode-toggle');
+            const modeIcon = document.getElementById('mode-icon');
+            const form = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            const allNavLinks = navLinks.querySelectorAll('a');
+
+            // --- JS Feature 1: Dark Mode Toggle with localStorage ---
+            
+            /**
+             * Initializes the dark mode based on user's local preference or system preference.
+             */
+            const initializeDarkMode = () => {
+                const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                if (isDarkMode) {
+                    body.classList.add('dark-mode');
+                    modeIcon.textContent = '☀️'; // Sun icon for light mode toggle
+                } else {
+                    body.classList.remove('dark-mode');
+                    modeIcon.textContent = '🌙'; // Moon icon for dark mode toggle
+                }
+            };
+            
+            /**
+             * Toggles the dark mode and updates localStorage.
+             */
+            const toggleDarkMode = () => {
+                const isCurrentlyDark = body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', isCurrentlyDark);
+                modeIcon.textContent = isCurrentlyDark ? '☀️' : '🌙';
+            };
+
+            modeToggle.addEventListener('click', toggleDarkMode);
+            initializeDarkMode();
+            
+            // --- JS Feature 2: Mobile Menu Toggle ---
+            
+            /**
+             * Toggles the visibility of the mobile navigation menu.
+             */
+            navToggle.addEventListener('click', () => {
+                // Toggles the 'open' class which handles the CSS visibility
+                navLinks.classList.toggle('open');
+                
+                // Accessibility: Toggle aria-expanded attribute for screen readers
+                const isExpanded = navLinks.classList.contains('open');
+                navToggle.setAttribute('aria-expanded', isExpanded);
+            });
+            
+            // Close mobile menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('open')) {
+                        navLinks.classList.remove('open');
+                        navToggle.setAttribute('aria-expanded', false);
+                    }
+                });
+            });
+
+            // --- JS Feature 3: Dynamic Active Nav Link Highlighting (and Smooth Scroll) ---
+            
+            /**
+             * Marks the currently active section in the navigation bar.
+             */
+            const markActiveLink = () => {
+                const currentScroll = window.scrollY;
+
+                // Loop through all sections
+                document.querySelectorAll('section').forEach(section => {
+                    const sectionTop = section.offsetTop - 80; // Subtract header height
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    const id = section.getAttribute('id');
+
+                    const correspondingLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+                    
+                    if (correspondingLink) {
+                        // Check if scroll position is within the section bounds
+                        if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
+                            correspondingLink.classList.add('active');
+                        } else {
+                            correspondingLink.classList.remove('active');
+                        }
+                    }
+                });
+            };
+
+            // Listen for scroll events to update the active link
+            window.addEventListener('scroll', markActiveLink);
+            
+            // Initial call to set the active link when the page loads
+            markActiveLink();
+            
+            // --- JS Feature 4 (Bonus): Simple Form Submission Handling ---
+            
+            /**
+             * Handles the front-end submission of the contact form.
+             */
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // In a real application, this is where you would send the data to a server.
+                // Since this is a front-end only requirement, we simulate success.
+                
+                // Get form data (optional, for display purposes)
+                const name = document.getElementById('name').value;
+                
+                // Display success message in the custom form message area (not alert!)
+                formMessage.style.color = 'var(--color-primary)';
+                formMessage.innerHTML = `Thank you, ${name || 'user'}! Your message has been received. (No backend submitted)`;
+                
+                // Clear the form
+                form.reset();
+                
+                // Clear the message after a few seconds
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
+            });
+
+        });
+    </script>
+</body>
+</html>
